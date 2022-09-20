@@ -46,7 +46,7 @@ with DAG(
       create_table = MySqlOperator(
         task_id="create_table",
         mysql_conn_id="mysql_conn",
-        sql='./traffic_schema.sql' 
+        sql='./trafficDB_schema.sql' 
     )
       migrate_data = PythonOperator(task_id="migrate_data",
         python_callable=migrate)
