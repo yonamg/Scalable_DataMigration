@@ -1,4 +1,4 @@
-# Importing the necessary modules
+#importing python modules
 from airflow.providers.postgres.operators.postgres import PostgresOperator
 from airflow.providers.postgres.hooks.postgres import PostgresHook
 from airflow.operators.python_operator import PythonOperator
@@ -95,7 +95,7 @@ def insert_data():
 ####################################################
 
 with DAG(
-    dag_id='ELT_DAG',
+    dag_id='dag_elt',
     default_args=default_args,
     description='Upload data from CSV to Postgres and Transform it with dbt',
     schedule_interval='@once',
