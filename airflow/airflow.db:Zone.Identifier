@@ -1,0 +1,4 @@
+[ZoneTransfer]
+ZoneId=3
+ReferrerUrl=https://github.com/bkget/Scalable-Data-Migration/blob/main/airflow/airflow.db
+HostUrl=https://raw.githubusercontent.com/bkget/Scalable-Data-Migration/main/airflow/airflow.db
