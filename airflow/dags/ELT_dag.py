@@ -3,21 +3,25 @@ from airflow.providers.postgres.hooks.postgres import PostgresHook
 from airflow.operators.python_operator import PythonOperator
 from airflow.operators.email_operator import EmailOperator
 from airflow.operators.bash_operator import BashOperator
+
 from datetime import datetime as dt
 from datetime import timedelta
 from airflow import DAG 
 import pandas as pd
 from sqlalchemy import Numeric
+from airflow.utils.dates import datetime
+from airflow.utils.dates import timedelta
+from airflow.utils.dates import days_ago
 
 # Specifing the default_args
 default_args = {
-    'owner': 'biruk',
+    'owner': 'yonas',
     'depends_on_past': False,
-    'email': ['bkgetmom@gmail.com'],
+    'email': ['softeng2006@gmail.com'],
     'email_on_failure': True,
     'email_on_retry': True,
     'retries': 1,
-    'start_date': dt(2022, 7, 18),
+    'start_date': dt(2022, 9, 24),
     'retry_delay': timedelta(minutes=5)
 }
  
@@ -25,7 +29,7 @@ def split_into_chunks(arr, n):
     return [arr[i : i + n] for i in range(0, len(arr), n)]
 
 def read_data():
-    data_df = pd.read_csv('/opt/airflow/data/20181024_d1_0830_0900.csv', 
+    data_df = pd.read_csv('/opt/airflow/data/places.csv', 
                           skiprows=1,
                           header=None,
                           delimiter="\n",
@@ -95,11 +99,13 @@ def insert_data():
 ####################################################
 
 with DAG(
-    dag_id='ELT_DAG',
+    dag_id='ELT_dag',
     default_args=default_args,
     description='Upload data from CSV to Postgres and Transform it with dbt',
-    schedule_interval='@once',
-    catchup=False
+    schedule_interval='@daily',
+    start_date=days_ago(1),
+    dagrun_timeout=timedelta(minutes=60),
+    
 ) as pg_dag:
  
 #  data_reader = PythonOperator(
@@ -108,6 +114,7 @@ with DAG(
 #   )
 
  table_creator = PostgresOperator(
+    dag=pg_dag,
     task_id="create_table", 
     postgres_conn_id="pg_server",
     sql = '''
@@ -153,15 +160,10 @@ with DAG(
                     "/opt/airflow/dbt"
  )
 
- email_report = EmailOperator(
-    task_id='send_email',
-    to='bkgetmom@gmail.com',
-    subject='Daily report generated',
-    html_content=""" <h3>Congratulations! ELT process is completed.</h3> """
- )
+ 
 
     ####################################################
     #          Task dependencies                       #
     ####################################################
 
-table_creator >> data_loader  >> dbt_run >> dbt_test >> dbt_doc_generate >> email_report
+table_creator >> data_loader >> dbt_run >> dbt_test >> dbt_doc_generate
