@@ -13,3 +13,9 @@ Tech Stack used in this project includes:
 * [![DBT][DBT.com]][DBT-url]
 * [![Redash][Redash.com]][Redash-url]
 
+<!-- GETTING STARTED -->
+## Getting Started
+### Prerequisites
+Make sure you have docker installed on local machine.
+-   Docker
+-   Docker Compose
