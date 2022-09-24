@@ -1,13 +1,17 @@
-#importing python modules
 from airflow.providers.postgres.operators.postgres import PostgresOperator
 from airflow.providers.postgres.hooks.postgres import PostgresHook
 from airflow.operators.python_operator import PythonOperator
+from airflow.operators.email_operator import EmailOperator
 from airflow.operators.bash_operator import BashOperator
+
 from datetime import datetime as dt
 from datetime import timedelta
 from airflow import DAG 
 import pandas as pd
 from sqlalchemy import Numeric
+from airflow.utils.dates import datetime
+from airflow.utils.dates import timedelta
+from airflow.utils.dates import days_ago
 
 # Specifing the default_args
 default_args = {
@@ -17,7 +21,7 @@ default_args = {
     'email_on_failure': True,
     'email_on_retry': True,
     'retries': 1,
-    'start_date': dt(2022, 9, 21),
+    'start_date': dt(2022, 9, 24),
     'retry_delay': timedelta(minutes=5)
 }
  
@@ -25,7 +29,7 @@ def split_into_chunks(arr, n):
     return [arr[i : i + n] for i in range(0, len(arr), n)]
 
 def read_data():
-    data_df = pd.read_csv('..data/places.csv', 
+    data_df = pd.read_csv('/opt/airflow/data/places.csv', 
                           skiprows=1,
                           header=None,
                           delimiter="\n",
@@ -95,11 +99,13 @@ def insert_data():
 ####################################################
 
 with DAG(
-    dag_id='dag_elt',
+    dag_id='ELT_dag',
     default_args=default_args,
     description='Upload data from CSV to Postgres and Transform it with dbt',
-    schedule_interval='@once',
-    catchup=False
+    schedule_interval='@daily',
+    start_date=days_ago(1),
+    dagrun_timeout=timedelta(minutes=60),
+    
 ) as pg_dag:
  
 #  data_reader = PythonOperator(
@@ -108,6 +114,7 @@ with DAG(
 #   )
 
  table_creator = PostgresOperator(
+    dag=pg_dag,
     task_id="create_table", 
     postgres_conn_id="pg_server",
     sql = '''
@@ -139,12 +146,12 @@ with DAG(
  DBT_PROJECT_DIR = "/opt/airflow/dbt"
  dbt_run = BashOperator(
     task_id="dbt_run",
-    bash_command=f"dbt run --profiles-dir /opt/airflow/dbt --project-dir /opt/airflow/dbt",
+    bash_command=f"dbt run --profiles-dir {DBT_PROJECT_DIR} --project-dir {DBT_PROJECT_DIR}",
  )
 
  dbt_test = BashOperator(
     task_id="dbt_test",
-    bash_command=f"dbt test --profiles-dir /opt/airflow/dbt --project-dir /opt/airflow/dbt",
+    bash_command=f"dbt test --profiles-dir {DBT_PROJECT_DIR} --project-dir {DBT_PROJECT_DIR}",
  )
 
  dbt_doc_generate = BashOperator(
@@ -153,8 +160,10 @@ with DAG(
                     "/opt/airflow/dbt"
  )
 
+ 
+
     ####################################################
     #          Task dependencies                       #
     ####################################################
 
-table_creator >> data_loader  >> dbt_run >> dbt_test >> dbt_doc_generate
+table_creator >> data_loader >> dbt_run >> dbt_test >> dbt_doc_generate
