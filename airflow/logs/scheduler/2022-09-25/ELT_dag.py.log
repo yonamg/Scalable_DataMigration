@@ -511,3 +511,45 @@ Please take a look at these docs to improve your DAG import time:
 [2022-09-25T14:21:19.008+0000] {logging_mixin.py:117} INFO - [2022-09-25T14:21:19.008+0000] {dag.py:2573} INFO - Sync 1 DAGs
 [2022-09-25T14:21:19.034+0000] {logging_mixin.py:117} INFO - [2022-09-25T14:21:19.034+0000] {dag.py:3328} INFO - Setting next_dagrun for ELT_dag to 2022-09-25T00:00:00+00:00, run_after=2022-09-26T00:00:00+00:00
 [2022-09-25T14:21:19.080+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/ELT_dag.py took 0.412 seconds
+[2022-09-25T14:21:49.324+0000] {processor.py:156} INFO - Started process (PID=914) to work on /opt/airflow/dags/ELT_dag.py
+[2022-09-25T14:21:49.354+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/ELT_dag.py for tasks to queue
+[2022-09-25T14:21:49.357+0000] {logging_mixin.py:117} INFO - [2022-09-25T14:21:49.357+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/ELT_dag.py
+[2022-09-25T14:21:49.690+0000] {processor.py:768} INFO - DAG(s) dict_keys(['ELT_dag']) retrieved from /opt/airflow/dags/ELT_dag.py
+[2022-09-25T14:21:49.741+0000] {logging_mixin.py:117} INFO - [2022-09-25T14:21:49.740+0000] {dag.py:2573} INFO - Sync 1 DAGs
+[2022-09-25T14:21:49.782+0000] {logging_mixin.py:117} INFO - [2022-09-25T14:21:49.782+0000] {dag.py:3328} INFO - Setting next_dagrun for ELT_dag to 2022-09-25T00:00:00+00:00, run_after=2022-09-26T00:00:00+00:00
+[2022-09-25T14:21:49.855+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/ELT_dag.py took 0.539 seconds
+[2022-09-25T14:22:20.143+0000] {processor.py:156} INFO - Started process (PID=943) to work on /opt/airflow/dags/ELT_dag.py
+[2022-09-25T14:22:20.155+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/ELT_dag.py for tasks to queue
+[2022-09-25T14:22:20.156+0000] {logging_mixin.py:117} INFO - [2022-09-25T14:22:20.156+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/ELT_dag.py
+[2022-09-25T14:22:20.467+0000] {processor.py:768} INFO - DAG(s) dict_keys(['ELT_dag']) retrieved from /opt/airflow/dags/ELT_dag.py
+[2022-09-25T14:22:20.511+0000] {logging_mixin.py:117} INFO - [2022-09-25T14:22:20.511+0000] {dag.py:2573} INFO - Sync 1 DAGs
+[2022-09-25T14:22:20.542+0000] {logging_mixin.py:117} INFO - [2022-09-25T14:22:20.542+0000] {dag.py:3328} INFO - Setting next_dagrun for ELT_dag to 2022-09-25T00:00:00+00:00, run_after=2022-09-26T00:00:00+00:00
+[2022-09-25T14:22:20.641+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/ELT_dag.py took 0.505 seconds
+[2022-09-25T14:22:50.994+0000] {processor.py:156} INFO - Started process (PID=964) to work on /opt/airflow/dags/ELT_dag.py
+[2022-09-25T14:22:51.006+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/ELT_dag.py for tasks to queue
+[2022-09-25T14:22:51.008+0000] {logging_mixin.py:117} INFO - [2022-09-25T14:22:51.007+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/ELT_dag.py
+[2022-09-25T14:22:51.386+0000] {processor.py:768} INFO - DAG(s) dict_keys(['ELT_dag']) retrieved from /opt/airflow/dags/ELT_dag.py
+[2022-09-25T14:22:51.428+0000] {logging_mixin.py:117} INFO - [2022-09-25T14:22:51.428+0000] {dag.py:2573} INFO - Sync 1 DAGs
+[2022-09-25T14:22:51.457+0000] {logging_mixin.py:117} INFO - [2022-09-25T14:22:51.457+0000] {dag.py:3328} INFO - Setting next_dagrun for ELT_dag to 2022-09-25T00:00:00+00:00, run_after=2022-09-26T00:00:00+00:00
+[2022-09-25T14:22:51.519+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/ELT_dag.py took 0.533 seconds
+[2022-09-25T14:23:21.829+0000] {processor.py:156} INFO - Started process (PID=993) to work on /opt/airflow/dags/ELT_dag.py
+[2022-09-25T14:23:21.830+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/ELT_dag.py for tasks to queue
+[2022-09-25T14:23:21.831+0000] {logging_mixin.py:117} INFO - [2022-09-25T14:23:21.831+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/ELT_dag.py
+[2022-09-25T14:23:22.306+0000] {processor.py:768} INFO - DAG(s) dict_keys(['ELT_dag']) retrieved from /opt/airflow/dags/ELT_dag.py
+[2022-09-25T14:23:22.365+0000] {logging_mixin.py:117} INFO - [2022-09-25T14:23:22.365+0000] {dag.py:2573} INFO - Sync 1 DAGs
+[2022-09-25T14:23:22.408+0000] {logging_mixin.py:117} INFO - [2022-09-25T14:23:22.408+0000] {dag.py:3328} INFO - Setting next_dagrun for ELT_dag to 2022-09-25T00:00:00+00:00, run_after=2022-09-26T00:00:00+00:00
+[2022-09-25T14:23:22.513+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/ELT_dag.py took 0.689 seconds
+[2022-09-25T14:23:52.746+0000] {processor.py:156} INFO - Started process (PID=1023) to work on /opt/airflow/dags/ELT_dag.py
+[2022-09-25T14:23:52.748+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/ELT_dag.py for tasks to queue
+[2022-09-25T14:23:52.750+0000] {logging_mixin.py:117} INFO - [2022-09-25T14:23:52.749+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/ELT_dag.py
+[2022-09-25T14:23:53.140+0000] {processor.py:768} INFO - DAG(s) dict_keys(['ELT_dag']) retrieved from /opt/airflow/dags/ELT_dag.py
+[2022-09-25T14:23:53.182+0000] {logging_mixin.py:117} INFO - [2022-09-25T14:23:53.182+0000] {dag.py:2573} INFO - Sync 1 DAGs
+[2022-09-25T14:23:53.213+0000] {logging_mixin.py:117} INFO - [2022-09-25T14:23:53.213+0000] {dag.py:3328} INFO - Setting next_dagrun for ELT_dag to 2022-09-25T00:00:00+00:00, run_after=2022-09-26T00:00:00+00:00
+[2022-09-25T14:23:53.276+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/ELT_dag.py took 0.537 seconds
+[2022-09-25T14:24:23.530+0000] {processor.py:156} INFO - Started process (PID=1043) to work on /opt/airflow/dags/ELT_dag.py
+[2022-09-25T14:24:23.532+0000] {processor.py:758} INFO - Processing file /opt/airflow/dags/ELT_dag.py for tasks to queue
+[2022-09-25T14:24:23.533+0000] {logging_mixin.py:117} INFO - [2022-09-25T14:24:23.533+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/airflow/dags/ELT_dag.py
+[2022-09-25T14:24:23.817+0000] {processor.py:768} INFO - DAG(s) dict_keys(['ELT_dag']) retrieved from /opt/airflow/dags/ELT_dag.py
+[2022-09-25T14:24:23.857+0000] {logging_mixin.py:117} INFO - [2022-09-25T14:24:23.856+0000] {dag.py:2573} INFO - Sync 1 DAGs
+[2022-09-25T14:24:23.885+0000] {logging_mixin.py:117} INFO - [2022-09-25T14:24:23.885+0000] {dag.py:3328} INFO - Setting next_dagrun for ELT_dag to 2022-09-25T00:00:00+00:00, run_after=2022-09-26T00:00:00+00:00
+[2022-09-25T14:24:23.946+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/ELT_dag.py took 0.422 seconds
